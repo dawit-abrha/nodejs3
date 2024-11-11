@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>entity relation ship</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class ="container">
+        <form action="/create-tweet" method="post">
+            <input type="text" name="text" placeholder="What's on your mind?">
+            <button>click to post your text</button>
+        </form>
+    </div>
+   <div class="comment">
+    <% for( let i = 0; i < tweets.length; i++) { %>
+        <h2> <%= tweets[i].text %> </h2>
+    <p>Posted On <%= tweets[i].createdAt %> </p>
+    <a href="/delete-tweet/<%= tweets[i]._id %>">Delete post</a>
+
+    <form action="/addcomment/<%= tweets[i]._id %>" method="post">
+        <input type="text" name="commentOnTweet" placeholder="Enter your comment here">
+           <button>comment on your post </button>
+    </form>
+    <% if (tweets.length > 0) { %>
+        <% for (let j = 0; j < tweets[i].comment.length; j++)
+        { %>
+            <p> <%= tweets[i].comment[j].commentOnTweet %> </p>
+            <a href="/delete-comment/<%= tweets[i].comment[j]._id %>">Delete comment</a>
+            <% } %>
+            <% } %>
+            <% } %>
+
+   </div>
+
+
+            
+</body>
+</html>
+</html>
